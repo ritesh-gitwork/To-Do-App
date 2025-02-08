@@ -1,24 +1,31 @@
 let ctr = 1;
 
 function deleteTodo(index) {
-  const delEle = document.getElementById(index);
-  delEle.parentNode.removeChild(delEle);
+  const delEl = document.getElementById(index);
+  delEl.parentNode.removeChild(delEl);
 }
 
 function addTodo() {
-  const inputEl = document.querySelector("input");
-  const value = inputEl.value;
+  const selEl = document.querySelector("input");
+  const todoText = selEl.value.trim();
 
-  const newDivEle = document.createElement("div");
-  newDivEle.setAttribute("id", ctr);
+  if (todoText === "") {
+    alert("Please enter a todo item.");
+    return;
+  }
 
-  newDivEle.innerHTML =
+  const newDiv = document.createElement("div");
+  newDiv.setAttribute("id", ctr);
+
+  const value = selEl.value;
+
+  newDiv.innerHTML =
     "<div>" +
     value +
     '</div><button onclick="deleteTodo(' +
     ctr +
     ')">Delete</button>';
 
-  document.querySelector("body").appendChild(newDivEle);
+  document.querySelector("body").appendChild(newDiv);
   ctr = ctr + 1;
 }
